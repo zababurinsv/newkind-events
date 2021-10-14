@@ -5,7 +5,6 @@
   "main": "./dist/index.mjs",
   "author": "Zababurin Sergey",
   "license": "GPL-3.0-only",
-  "private": true,
   "config": {
     "port": 3269
   },
@@ -21,7 +20,12 @@
     "npm-run-all": "^4.1.5",
     "parcel": "2.0.0-rc.0"
   },
-  "dependencies": {
-    "chai": "^4.3.4"
-  }
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zababurinsv/newkind-events.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zababurinsv/newkind-events/issues"
+  },
+  "homepage": "https://github.com/zababurinsv/newkind-events#readme"
 }
