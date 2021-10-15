@@ -8,19 +8,26 @@
   "author": "Zababurin Sergey",
   "license": "GPL-3.0-only",
   "targets": {
-    "main": false
+    "main": false,
+    "module": {
+      "includeNodeModules": true,
+      "optimize": true
+    },
+    "docs": {
+      "source": "./frontend/src/index.html"
+    }
   },
   "config": {
-    "path_html": "./frontend/src/index.html",
-    "path_mjs": "./frontend/src/index.mjs",
-    "port": 3269
+    "html": "./frontend/src/index.html",
+    "mjs": "./frontend/src/index.mjs",
+    "port": 6999
   },
   "scripts": {
-    "start": "start",
-    "dev": "parcel ./src/index.html -p $npm_package_config_port --cache-dir ./.parcel-cache",
-    "build": "parcel build ./src/index.mjs --cache-dir ./.parcel-cache",
+    "dev": "parcel $npm_package_config_html --port $npm_package_config_port --no-source-maps --dist-dir ./docs ",
+    "build:html": "parcel build --target docs --no-source-maps --dist-dir ./docs ",
+    "build": "parcel build $npm_package_config_mjs --no-source-maps --dist-dir ./dist ",
     "kill": "kill $(lsof -t -i:$npm_package_config_port)",
-    "clean": "rimraf ../../.parcel-cache"
+    "clean:parcel": "find . -name \".parcel-cache\" -exec rm -rf '{}' +; "
   },
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
