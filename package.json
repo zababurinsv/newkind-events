@@ -2,10 +2,17 @@
   "name": "@newkind/events",
   "version": "0.2.5",
   "description": "task manager for async events",
+  "source": "./frontend/src/index.mjs",
+  "module": "./dist/index.mjs",
   "main": "./dist/index.mjs",
   "author": "Zababurin Sergey",
   "license": "GPL-3.0-only",
+  "targets": {
+    "main": false
+  },
   "config": {
+    "path_html": "./frontend/src/index.html",
+    "path_mjs": "./frontend/src/index.mjs",
     "port": 3269
   },
   "scripts": {

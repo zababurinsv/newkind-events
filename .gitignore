@@ -1,37 +1,3 @@
-.ninja_deps
-.ninja_log
-build.ninja
-__pycache__
-*.swp
-*.pyc
-*.egg-info
-.coverage
-build/
-conceptnet5/import*/*.txt
-conceptnet5/wiktparse/*_parser.ebnf
-evaluation/responses
-evaluation/data
-enwiktionary.xml
-wikipedia.txt
-secrets.py
-*.tar.bz2
-env/
-data
-conceptnet.s3.amazonaws.com/
-attic/
-static/img/build/
-logs/*.log
-*.zip
-./static/img/build/
-lib/apsw-3.8.5-r1/
-lib/apsw-3.8.6-r1/
-.snakemake/
-testdata/current
-.idea
-.DS_Store
-*/.DS_Store
-.DS_Store?
-yarn.lock
 # Logs
 logs
 *.log
@@ -39,9 +5,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
-projects
-projects/*
-**/.parcel-cache/**
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
@@ -72,9 +36,6 @@ bower_components
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
-**/node_modules/
-**/**/node_modules/
-**/node_modules/**
 
 # Dependency directories
 node_modules/
@@ -140,7 +101,3 @@ typings/
 
 # TernJS port file
 .tern-port
-
-./data
-./data/*
-./data/**
