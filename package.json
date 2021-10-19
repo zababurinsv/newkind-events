@@ -27,8 +27,7 @@
     "build:html": "parcel build --target docs --no-source-maps --dist-dir ./docs ",
     "build": "parcel build $npm_package_config_mjs --no-source-maps --dist-dir ./dist",
     "kill": "kill $(lsof -t -i:$npm_package_config_port)",
-    "clean:parcel": "find . -name \".parcel-cache\" -exec rm -rf '{}' +; ",
-    "postversion": "npm publish"
+    "clean:parcel": "find . -name \".parcel-cache\" -exec rm -rf '{}' +; "
   },
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
