@@ -64,7 +64,7 @@ let close = (task) => {
             resolve({
                 status: 'ok',
                 success: true,
-                message: ''
+                message: task
             })
         } catch (e) {
             resolve({
@@ -164,6 +164,6 @@ let promise = (task, message, call) => {
 export default  {
     list: list,
     close: close,
-    await: wait,
+    wait: wait,
     promise: promise
 }

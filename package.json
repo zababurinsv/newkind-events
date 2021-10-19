@@ -25,14 +25,29 @@
   "scripts": {
     "dev": "parcel $npm_package_config_html --port $npm_package_config_port --cache-dir ./.parcel-cache  --no-source-maps --dist-dir ./docs ",
     "build:html": "parcel build --target docs --no-source-maps --dist-dir ./docs ",
-    "build": "parcel build $npm_package_config_mjs --no-source-maps --dist-dir ./dist ",
+    "build": "parcel build $npm_package_config_mjs --no-source-maps --dist-dir ./dist",
+    "postversion": "npm publish",
+    "postpublish": "git push",
     "kill": "kill $(lsof -t -i:$npm_package_config_port)",
     "clean:parcel": "find . -name \".parcel-cache\" -exec rm -rf '{}' +; "
   },
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-jest": "^23.6.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.18.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "husky": "^4.2.1",
+    "lint-staged": "^10.0.5",
     "npm-run-all": "^4.1.5",
-    "parcel": "2.0.0-rc.0"
+    "parcel": "2.0.0-rc.0",
+    "prettier": "^1.19.1",
+    "typescript": "^3.4.5"
   },
   "repository": {
     "type": "git",
@@ -41,5 +56,21 @@
   "bugs": {
     "url": "https://github.com/zababurinsv/newkind-events/issues"
   },
-  "homepage": "https://github.com/zababurinsv/newkind-events#readme"
+  "homepage": "https://github.com/zababurinsv/newkind-events#readme",
+  "lint-staged": {
+    "src/**/*.ts?(x)": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "post-commit": "git update-index --again"
+    }
+  },
+  "dependencies": {
+    "doxdox": "^3.0.0"
+  }
 }
