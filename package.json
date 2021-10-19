@@ -1,6 +1,6 @@
 {
   "name": "@newkind/events",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "task manager for async events",
   "source": "./frontend/src/index.mjs",
   "module": "./dist/index.mjs",
@@ -26,10 +26,9 @@
     "dev": "parcel $npm_package_config_html --port $npm_package_config_port --cache-dir ./.parcel-cache  --no-source-maps --dist-dir ./docs ",
     "build:html": "parcel build --target docs --no-source-maps --dist-dir ./docs ",
     "build": "parcel build $npm_package_config_mjs --no-source-maps --dist-dir ./dist",
-    "postversion": "npm publish",
-    "postpublish": "git push",
     "kill": "kill $(lsof -t -i:$npm_package_config_port)",
-    "clean:parcel": "find . -name \".parcel-cache\" -exec rm -rf '{}' +; "
+    "clean:parcel": "find . -name \".parcel-cache\" -exec rm -rf '{}' +; ",
+    "postversion": "npm publish"
   },
   "devDependencies": {
     "@babel/preset-react": "^7.14.5",
