@@ -1,6 +1,6 @@
 {
   "name": "@newkind/events",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "task manager for async events",
   "source": "./frontend/src/index.mjs",
   "module": "./dist/index.mjs",
