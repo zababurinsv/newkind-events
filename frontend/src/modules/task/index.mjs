@@ -87,7 +87,7 @@ let wait = (task, call) => {
                     target[`${task}`] = { call: call }
                     resolve(true)
                 } else {
-                    console.log(`  ${emoji('moon')[2][1]}`, source[`${task}`][0]['task'])
+                    // console.log(`  ${emoji('moon')[2][1]}`, source[`${task}`][0]['task'])
                     target[`${task}`] = { call: call }
                     let item = target[`${task}`]
                     while(!isEmpty(source[`${task}`][0])) {
@@ -120,7 +120,7 @@ let promise = (task, message, call) => {
     return new Promise((resolve, reject) => {
         try {
             if(isEmpty(target[`${task}`])) {
-                console.log(`  ${emoji('moon')[2][3]}`, task + ' process')
+                // console.log(`  ${emoji('moon')[2][3]}`, task + ' process')
                 source[`${task}`] = {
                     message: message,
                     task: task,
@@ -128,7 +128,7 @@ let promise = (task, message, call) => {
                 }
                 resolve(true)
             } else {
-                console.log(`  ${emoji('moon')[1][3]}`, task + ' process')
+                // console.log(`  ${emoji('moon')[1][3]}`, task + ' process')
                 source[`${task}`] = {
                     message: message,
                     task:task,
