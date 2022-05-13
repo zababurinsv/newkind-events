@@ -31,6 +31,7 @@ app.get('/manifest.json', async (req, res) => {
 })
 
 app.use(express.static(`frontend/src`));
+app.use(express.static(`dist`));
 
 app.options('/*', cors(corsOptions))
 app.get('/*', async (req, res) => {

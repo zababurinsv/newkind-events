@@ -24,24 +24,36 @@ $ yarn add @newkind/events
 ### Example
 ```jsx
 <script type="module">
-    import events from './index.mjs'
-    (async () => {
-        await events.send('/task', {})
+  import { list, close, wait, send } from './index.mjs'
+ 
+  (async () => {
 
-        await events.wait('/task', async (object) => {
-            object.call({task: 1, status:'1111111111'})
-        })
+  send('/task', {send:"send"}, (event) => {
+    console.log('events', event.task)
+  }).catch(e => {console.log('error', e)})
 
-        await events.wait('/task', async (object) => {
-            object.call({task: 2, status:'2222222222'})
-        })
+  send('/task', {send:"send"}, (event) => {
+    console.log('events', event.task)
+  }).catch(e => {console.log('error', e)})
 
-        await events.send('/task', {test:"test"}, (event) => {
-            console.log('events', event.task)
-        })
-        await events.list()
-        await events.close('/task')
-    })()
+  wait('/task', async (object) => {
+    object.call({task: 1, status:'test'})
+  }).catch(e => {console.log('error', e)})
+
+  wait('/task', async (object) => {
+    object.call({task: 2, status:'test'})
+  }).catch(e => {console.log('error', e)})
+
+  send('/task', {test:"test"}, (event) => {
+    console.log('events', event.task)
+  }).catch(e => {console.log('error', e)})
+
+  send('/task', {test:"test"}, (event) => {
+    console.log('events', event.task)
+  }).catch(e => {console.log('error', e)})
+   console.log('close', close('/task'))
+   console.log('list', list())
+})()
 </script>
 ```
 ## License
