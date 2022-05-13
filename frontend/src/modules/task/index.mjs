@@ -3,10 +3,7 @@ import emoji from '../emoji/emoji.mjs'
 
 let remove = {}
 
-let target = new Proxy({}, {
-    get: (obj, prop) => {
-        return obj[prop];
-    },
+const target = new Proxy({}, {
     set: (obj, prop, value) => {
         if(isEmpty(obj[prop])){
             obj[prop] = []
@@ -16,10 +13,7 @@ let target = new Proxy({}, {
     }
 });
 
-let source  = new Proxy({}, {
-    get: (obj, prop) => {
-        return obj[prop];
-    },
+const source  = new Proxy({}, {
     set: (obj, prop, value) => {
         if(isEmpty(obj[prop])){
             obj[prop] = []
@@ -40,57 +34,30 @@ const events = (task) => {
         });
         source[`${task}`].shift()
     }
+
     if(remove[`${task}`]) {
         delete target[`${task}`]
         delete remove[`${task}`]
     }
+
     delete source[`${task}`]
 }
 
 const list = () => {
-    return new Promise((resolve, reject) => {
-        try {
-            resolve({
-                status: 'ok',
-                success: true,
-                message: {
-                    target:target,
-                    source:source,
-                    remove:remove
-                }
-            })
-        } catch (e) {
-            resolve({
-                status: 'false',
-                success: false,
-                message: e
-            })
-        }
-    })
+    return {
+        target:target,
+        source:source,
+        remove:remove
+    }
 }
 
-let close = (task) => {
-    return new Promise(async (resolve, reject) => {
-        try {
-            isEmpty(source[`${task}`])
-                ? delete target[`${task}`]
-                : remove[`${task}`] = true
-            resolve({
-                status: 'ok',
-                success: true,
-                message: task
-            })
-        } catch (e) {
-            resolve({
-                status: 'not ok',
-                success: false,
-                message: e
-            })
-        }
-    })
+const close = (task) => {
+    return isEmpty(source[`${task}`])
+        ? (delete target[`${task}`], true)
+        : (remove[`${task}`] = true, true)
 }
 
-let wait = (task, call) => {
+const wait = (task, call) => {
     return new Promise(async (resolve, reject) => {
         try {
             target[`${task}`] = { call: call }
@@ -107,7 +74,7 @@ let wait = (task, call) => {
     })
 }
 
-let send = (task, message, call) => {
+const send = (task, message, call) => {
     return new Promise((resolve, reject) => {
         try {
             source[`${task}`] = {
