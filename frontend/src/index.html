@@ -8,23 +8,34 @@
 <body>
 </body>
 <script type="module">
-    import events from './index.mjs'
+    import { list, close, wait, send } from './index.mjs'
     (async () => {
-        await events.send('/task', {})
 
-        await events.wait('/task', async (object) => {
-            object.call({task: 1, status:'1111111111'})
-        })
-
-        await events.wait('/task', async (object) => {
-            object.call({task: 2, status:'2222222222'})
-        })
-
-        await events.send('/task', {test:"test"}, (event) => {
+        send('/task', {send:"send"}, (event) => {
             console.log('events', event.task)
-        })
-        await events.list()
-        await events.close('/task')
+        }).catch(e => {console.log('error', e)})
+
+        send('/task', {send:"send"}, (event) => {
+            console.log('events', event.task)
+        }).catch(e => {console.log('error', e)})
+
+        wait('/task', async (object) => {
+            object.call({task: 1, status:'test'})
+        }).catch(e => {console.log('error', e)})
+
+        wait('/task', async (object) => {
+            object.call({task: 2, status:'test'})
+        }).catch(e => {console.log('error', e)})
+
+        send('/task', {test:"test"}, (event) => {
+            console.log('events', event.task)
+        }).catch(e => {console.log('error', e)})
+
+        send('/task', {test:"test"}, (event) => {
+            console.log('events', event.task)
+        }).catch(e => {console.log('error', e)})
+        // console.log('close', await close('/task'))
+        // console.log('list', await list())
     })()
 </script>
 </html>
